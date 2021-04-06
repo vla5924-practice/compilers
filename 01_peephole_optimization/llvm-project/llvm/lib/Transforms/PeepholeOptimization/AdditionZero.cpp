@@ -41,27 +41,27 @@ struct AdditionZero : public FunctionPass {
     }
 
   protected:
-    bool isTrivialAdd(Instruction const* instruction) const {
+    bool isTrivialAdd(const Instruction* instruction) const {
         return isBinaryAdd(instruction) && isTrivial(instruction);
     };
 
-    bool isBinaryAdd(Instruction const* instruction) const {
+    bool isBinaryAdd(const Instruction* instruction) const {
         return instruction->getOpcode() == Instruction::Add && instruction->getNumOperands() == 2;
     }
 
-    bool isTrivial(Instruction const* instruction) const {
+    bool isTrivial(const Instruction* instruction) const {
         auto const& operands = instruction->operands();
-        return std::any_of(operands.begin(), operands.end(), [this](auto const& operand) { return isZero(operand); });
+        return std::any_of(operands.begin(), operands.end(), [this](const auto& operand) { return isZero(operand); });
     }
 
-    bool isZero(Value const* operand) const {
-        auto const constant = dyn_cast<ConstantInt>(operand);
+    bool isZero(const Value* operand) const {
+        const auto constant = dyn_cast<ConstantInt>(operand);
         return constant && constant->isZero();
     }
 
     void replaceWithArgument(Instruction* instruction) const {
-        auto const& lhs = instruction->getOperand(0);
-        auto const& rhs = instruction->getOperand(1);
+        const auto& lhs = instruction->getOperand(0);
+        const auto& rhs = instruction->getOperand(1);
         instruction->replaceAllUsesWith(isZero(lhs) ? rhs : lhs);
     }
 };
