@@ -1,0 +1,14 @@
+add_subdirectory(Utils)
+add_subdirectory(Instrumentation)
+add_subdirectory(AggressiveInstCombine)
+add_subdirectory(InstCombine)
+add_subdirectory(Scalar)
+add_subdirectory(IPO)
+add_subdirectory(Vectorize)
+add_subdirectory(Hello)
+add_subdirectory(ObjCARC)
+add_subdirectory(Coroutines)
+add_subdirectory(CFGuard)
+
+# 01_peephole_optimization
+add_subdirectory(PeepholeOptimization)
