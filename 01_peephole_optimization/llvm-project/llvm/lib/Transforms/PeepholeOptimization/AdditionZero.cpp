@@ -1,3 +1,4 @@
+#include "llvm/IR/Constants.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/InstIterator.h"
 #include "llvm/IR/LegacyPassManager.h"
@@ -53,7 +54,7 @@ struct AdditionZero : public FunctionPass {
         return std::any_of(operands.begin(), operands.end(), [this](auto const& operand) { return isZero(operand); });
     }
 
-    bool isZero(Instruction const* instruction) const {
+    bool isZero(Value const* operand) const {
         auto const constant = dyn_cast<ConstantInt>(operand);
         return constant && constant->isZero();
     }
@@ -67,10 +68,10 @@ struct AdditionZero : public FunctionPass {
 
 } // namespace
 
-char Practice::ID = 0;
-static RegisterPass<AdditionZero>
-    RegisterPassAdditionZero("PeepholeOptimization_AdditionZero",
-                             "[01_peephole_optimization] Peephole Optimization :: Addition Zero Pass", false, false);
-static RegisterStandardPasses X(PassManagerBuilder::EP_EarlyAsPossible,
-                                [](const PassManagerBuilder& builder, legacy::PassManagerBase& manager) { manager.add(new AdditionZero();
-                                })
+char AdditionZero::ID = 0;
+static RegisterPass<AdditionZero> pass("PeepholeOptimization_AdditionZero",
+                                       "Peephole Optimization :: Addition Zero Pass", false, false);
+static RegisterStandardPasses std_pass(PassManagerBuilder::EP_EarlyAsPossible,
+                                       [](const PassManagerBuilder& builder, legacy::PassManagerBase& manager) {
+                                           manager.add(new AdditionZero());
+                                       });
