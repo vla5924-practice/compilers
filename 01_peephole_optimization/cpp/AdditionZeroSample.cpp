@@ -1,6 +1,6 @@
-#include <iostream>
-#include <cstdint>
 #include <chrono>
+#include <cstdint>
+#include <iostream>
 
 int main() {
     std::uint64_t sum_0 = 0;
@@ -29,6 +29,8 @@ int main() {
         const auto finish = std::chrono::high_resolution_clock::now();
         time += std::chrono::duration_cast<std::chrono::duration<double>>(finish - start);
     }
+    std::cout << sum_0 << ' ' << sum_1 << ' ' << sum_2 << ' ' << sum_3 << ' ' << sum_4 << ' ' << sum_5 << ' ' << sum_6
+              << ' ' << sum_7 << ' ' << sum_8 << ' ' << sum_9 << std::endl;
     std::cout << time.count() << std::endl;
     return 0;
 }
