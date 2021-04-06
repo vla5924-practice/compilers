@@ -1,0 +1,15 @@
+diff --git a/llvm-project/llvm/cmake/modules/LLVMProcessSources.cmake b/llvm-project/llvm/cmake/modules/LLVMProcessSources.cmake
+index ba8dca313c86..9dbdaf636f9c 100644
+--- a/llvm-project/llvm/cmake/modules/LLVMProcessSources.cmake
++++ b/llvm-project/llvm/cmake/modules/LLVMProcessSources.cmake
+@@ -111,8 +111,8 @@ function(llvm_check_source_file_list)
+           else()
+               set(fn_relative "${fn}")
+           endif()
+-          message(SEND_ERROR "Found unknown source file ${fn_relative}
+-Please update ${CMAKE_CURRENT_LIST_FILE}\n")
++          message(WARNING "Found unknown source file ${fn_relative}
++Update ${CMAKE_CURRENT_LIST_FILE} if needed\n")
+         endif()
+       endif()
+     endif()
