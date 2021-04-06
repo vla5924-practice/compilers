@@ -1,0 +1,10 @@
+mkdir build
+mkdir ir
+
+../llvm-project/build/bin/clang++ -O0 -emit-llvm -S -c cpp/SubtractionZeroSample.cpp -o /dev/stdout | sed 's/ optnone//g' > ir/SubtractionZeroBaseline.ll
+../llvm-project/build/bin/clang++ ir/SubtractionZeroBaseline.ll -o build/SubtractionZeroBaseline
+./build/SubtractionZeroBaseline
+
+../llvm-project/build/bin/opt -load ../llvm-project/build/lib/PeepholeOptimization_SubtractionZero.so -PeepholeOptimization_SubtractionZero < ir/SubtractionZeroBaseline.ll -S -o ir/SubtractionZeroOptimized.ll
+../llvm-project/build/bin/clang++ ir/SubtractionZeroOptimized.ll -o build/SubtractionZeroOptimized
+./build/SubtractionZeroOptimized
