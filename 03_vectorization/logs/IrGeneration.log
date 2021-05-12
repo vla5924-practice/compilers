@@ -1,0 +1,15 @@
+clang -O3 -fno-vectorize -fno-unroll-loops -I./cpp/ -DINCLUDE_TEST=\"test5.hpp\" test.cpp -emit-llvm -c -o test5.bc
+llvm-extract -func=_ZN8testFunc3runEv test5.bc -o run-fn.bc
+llvm-dis run-fn.bc -o NoVectorizationNoUnroll.ll
+
+clang -O3 -fno-vectorize -I./cpp/ -DINCLUDE_TEST=\"test5.hpp\" test.cpp -emit-llvm -c -o test5.bc
+llvm-extract -func=_ZN8testFunc3runEv test5.bc -o run-fn.bc
+llvm-dis run-fn.bc -o NoVectorizationWithUnroll.ll
+
+clang -O3 -fno-unroll-loops -I./cpp/ -DINCLUDE_TEST=\"test5.hpp\" test.cpp -emit-llvm -c -o test5.bc
+llvm-extract -func=_ZN8testFunc3runEv test5.bc -o run-fn.bc
+llvm-dis run-fn.bc -o WithVectorizationNoUnroll.ll
+
+clang -O3 -I./cpp/ -DINCLUDE_TEST=\"test5.hpp\" test.cpp -emit-llvm -c -o test5.bc
+llvm-extract -func=_ZN8testFunc3runEv test5.bc -o run-fn.bc
+llvm-dis run-fn.bc -o WithVectorizationWithUnroll.ll

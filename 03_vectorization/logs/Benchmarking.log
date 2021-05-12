@@ -1,0 +1,11 @@
+clang++ -O3 -fno-vectorize -fno-unroll-loops -Rpass=loop-vectorize ./cpp/benchmark_app.cpp -I ./cpp -DINCLUDE_TEST=\"test5.hpp\" -o ./benchmark
+./benchmark
+
+clang++ -O3 -fno-vectorize -Rpass=loop-vectorize ./cpp/benchmark_app.cpp -I ./cpp -DINCLUDE_TEST=\"test5.hpp\" -o ./benchmark
+./benchmark
+
+clang++ -O3 -fno-unroll-loops -Rpass=loop-vectorize ./cpp/benchmark_app.cpp -I ./cpp -DINCLUDE_TEST=\"test5.hpp\" -o ./benchmark
+./benchmark
+
+clang++ -O3 -Rpass=loop-vectorize ./cpp/benchmark_app.cpp -I ./cpp -DINCLUDE_TEST=\"test5.hpp\" -o ./benchmark
+./benchmark
