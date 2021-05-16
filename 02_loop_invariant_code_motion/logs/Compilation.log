@@ -1,0 +1,25 @@
+mkdir build
+
+clang++ ir/licm_5_O0.ll -o build/licm_5_O0
+clang++ ir/licm_5_O1.ll -o build/licm_5_O1
+clang++ ir/licm_5_O1_dirty.ll -o build/licm_5_O1_dirty
+
+clang++ ir/licm_10_O0.ll -o build/licm_10_O0
+clang++ ir/licm_10_O1.ll -o build/licm_10_O1
+clang++ ir/licm_10_O1_dirty.ll -o build/licm_10_O1_dirty
+
+clang++ ir/licm_20_O0.ll -o build/licm_20_O0
+clang++ ir/licm_20_O1.ll -o build/licm_20_O1
+clang++ ir/licm_20_O1_dirty.ll -o build/licm_20_O1_dirty
+
+clang++ ir/licm_div_5_O0.ll -o build/licm_div_5_O0
+clang++ ir/licm_div_5_O1.ll -o build/licm_div_5_O1
+clang++ ir/licm_div_5_O1_dirty.ll -o build/licm_div_5_O1_dirty
+
+clang++ ir/licm_div_10_O0.ll -o build/licm_div_10_O0
+clang++ ir/licm_div_10_O1.ll -o build/licm_div_10_O1
+clang++ ir/licm_div_10_O1_dirty.ll -o build/licm_div_10_O1_dirty
+
+clang++ ir/licm_div_20_O0.ll -o build/licm_div_20_O0
+clang++ ir/licm_div_20_O1.ll -o build/licm_div_20_O1
+clang++ ir/licm_div_20_O1_dirty.ll -o build/licm_div_20_O1_dirty

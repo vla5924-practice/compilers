@@ -1,0 +1,23 @@
+mkdir ir
+
+# Before patch apply
+clang++ -O0 -emit-llvm -S -c cpp/licm_5.cpp -o ir/licm_5_O0.ll
+clang++ -O0 -emit-llvm -S -c cpp/licm_10.cpp -o ir/licm_10_O0.ll
+clang++ -O0 -emit-llvm -S -c cpp/licm_20.cpp -o ir/licm_20_O0.ll
+clang++ -O0 -emit-llvm -S -c cpp/licm_div_5.cpp -o ir/licm_div_5_O0.ll
+clang++ -O0 -emit-llvm -S -c cpp/licm_div_10.cpp -o ir/licm_div_10_O0.ll
+clang++ -O0 -emit-llvm -S -c cpp/licm_div_20.cpp -o ir/licm_div_20_O0.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_5.cpp -o ir/licm_5_O1.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_10.cpp -o ir/licm_10_O1.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_20.cpp -o ir/licm_20_O1.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_div_5.cpp -o ir/licm_div_5_O1.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_div_10.cpp -o ir/licm_div_10_O1.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_div_20.cpp -o ir/licm_div_20_O1.ll
+
+# After patch apply and rebuild
+clang++ -O1 -emit-llvm -S -c cpp/licm_5.cpp -o ir/licm_5_O1_dirty.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_10.cpp -o ir/licm_10_O1_dirty.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_20.cpp -o ir/licm_20_O1_dirty.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_div_5.cpp -o ir/licm_div_5_O1_dirty.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_div_10.cpp -o ir/licm_div_10_O1_dirty.ll
+clang++ -O1 -emit-llvm -S -c cpp/licm_div_20.cpp -o ir/licm_div_20_O1_dirty.ll
