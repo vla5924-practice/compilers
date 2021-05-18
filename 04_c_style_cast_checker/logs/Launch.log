@@ -1,0 +1,7 @@
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+sudo apt install clang-12 clang-tools-12 clang-12-doc libclang-common-12-dev libclang-12-dev libclang1-12 clang-format-12 clangd-12
+
+cmake -S cpp -B build
+cmake --build build
+
+./build/c-style-cast-checker cpp/test.cpp
